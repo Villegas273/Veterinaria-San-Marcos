@@ -1,0 +1,20 @@
+body {
+    display: flex;
+}    
+    
+nav {
+    width: 250px;
+
+}
+
+main {
+    margin-top: 150px;
+    margin-left: 50px;
+}
+
+ul {
+    margin-top: -500px
+}
+
+
+

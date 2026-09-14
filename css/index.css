@@ -1,0 +1,45 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding-top: 150px;
+    text-align: center;
+}
+
+.footer-veterinaria {
+    background-color: #198754;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.footer-veterinaria p {
+    margin: 5px;
+}
+
+
+
+#carouselExample {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#carouselExample img {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
