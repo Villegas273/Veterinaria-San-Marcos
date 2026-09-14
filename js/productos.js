@@ -1,4 +1,4 @@
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const productos = [
     {
@@ -40,9 +40,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     <div class="card-body">
 
-                        <h5 class="card-title">
+                       <a href="detalle-productos.html?id=${producto.id}" class="text-decoration-none">
+                          <h5 class="card-title">
                             ${producto.nombre}
-                        </h5>
+                          </h5>
+                       </a>
 
                         <p class="card-text">
                             $${producto.precio}
@@ -89,6 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Mostrar carrito
     function mostrarCarrito() {
+
+        if (!listaCarrito) return;
 
         listaCarrito.innerHTML = "";
 
@@ -154,6 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function eliminarProducto(indice) {
 
     carrito.splice(indice, 1);
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 
     // Volver a mostrar
     const listaCarrito = document.getElementById("lista-carrito");
