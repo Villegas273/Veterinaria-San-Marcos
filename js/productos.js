@@ -1,5 +1,4 @@
-
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let carrito = [];
 
 const productos = [
     {
@@ -22,94 +21,174 @@ const productos = [
     }
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     const listaProductos = document.getElementById("Lista-productos");
     const listaCarrito = document.getElementById("lista-carrito");
 
-   function mostrarCarrito() {
-    listaCarrito.innerHTML = "";
+    // Mostrar productos
+    productos.forEach(function (producto) {
 
-  carrito.forEach((producto, indice) => {
-    listaCarrito.innerHTML += `
-    <p>
-        ${producto.nombre} - $${producto.precio}
-      <button class="btn btn-danger" data-indice="${indice}">
-    Eliminar
-</button>
-    </p>`;
+        listaProductos.innerHTML += `
+            <div class="col-md-4 mb-4">
+
+                <div class="card">
+
+                    <img src="${producto.imagen}"
+                         class="card-img-top"
+                         alt="${producto.nombre}">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            ${producto.nombre}
+                        </h5>
+
+                        <p class="card-text">
+                            $${producto.precio}
+                        </p>
+
+                        <button
+                            class="btn btn-primary btn-agregar"
+                            data-id="${producto.id}">
+                            Añadir al carrito
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
     });
 
-    listaCarrito.addEventListener("click", (evento) => {
-    if (evento.target.classList.contains("btn-danger")) {
 
-        const indice = evento.target.getAttribute("data-indice");
+    // Botones añadir
+    const botones = document.querySelectorAll(".btn-agregar");
 
-         carrito.splice(indice, 1);
-         
-         localStorage.setItem("carrito", JSON.stringify(carrito));
+    botones.forEach(function (boton) {
 
-        mostrarCarrito();
-    }
+        boton.addEventListener("click", function () {
+
+            const id = Number(this.dataset.id);
+
+            const producto = productos.find(function (producto) {
+                return producto.id === id;
+            });
+
+            carrito.push(producto);
+
+            mostrarCarrito();
+
+            console.log("Producto agregado:", producto);
+
+        });
+
     });
 
-    const total = carrito.reduce((suma, producto) => suma + producto.precio, 0);
 
-    listaCarrito.innerHTML += `
-        <h4>Total: $${total}</h4>
-    `;
+    // Mostrar carrito
+    function mostrarCarrito() {
+
+        listaCarrito.innerHTML = "";
+
+        if (carrito.length === 0) {
+
+            listaCarrito.innerHTML = `
+                <p>El carrito está vacío.</p>
+            `;
+
+            return;
+        }
+
+
+        carrito.forEach(function (producto, indice) {
+
+            listaCarrito.innerHTML += `
+                <div class="card mb-2">
+
+                    <div class="card-body">
+
+                        <h6>
+                            ${producto.nombre}
+                        </h6>
+
+                        <p>
+                            $${producto.precio}
+                        </p>
+
+                        <button
+                            class="btn btn-danger btn-sm"
+                            onclick="eliminarProducto(${indice})">
+                            Eliminar
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+
+        const total = carrito.reduce(function (suma, producto) {
+            return suma + producto.precio;
+        }, 0);
+
+
+        listaCarrito.innerHTML += `
+            <hr>
+            <h5>
+                Total: $${total}
+            </h5>
+        `;
     }
+
 
     mostrarCarrito();
 
+});
 
-    if (!listaProductos) return;
 
-    productos.forEach(producto => {
+// Eliminar producto
+function eliminarProducto(indice) {
 
-    listaProductos.innerHTML += `
-        <div class="col-md-4">
-            <div class="card">
+    carrito.splice(indice, 1);
 
-            <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
+    // Volver a mostrar
+    const listaCarrito = document.getElementById("lista-carrito");
+
+    listaCarrito.innerHTML = "";
+
+    carrito.forEach(function (producto, indice) {
+
+        listaCarrito.innerHTML += `
+            <div class="card mb-2">
 
                 <div class="card-body">
-                    <a href="detalle-productos.html?id=${producto.id}" class="text-decoration-none">
-                     <h5 class="card-title">${producto.nombre}</h5>
-                    </a>
-                    <p class="card-text">$${producto.precio}</p>
 
-                    <button class="btn btn-primary" data-id="${producto.id}">
-                       Añadir al carrito
+                    <h6>${producto.nombre}</h6>
+
+                    <p>$${producto.precio}</p>
+
+                    <button
+                        class="btn btn-danger btn-sm"
+                        onclick="eliminarProducto(${indice})">
+                        Eliminar
                     </button>
 
                 </div>
 
             </div>
-        </div>
-    `;
-
-});
-const botonesCarrito = document.querySelectorAll(".btn-primary");
-
-botonesCarrito.forEach(boton => {
-
-    boton.addEventListener("click", () => {
-
-        const id = boton.getAttribute("data-id");
-
-        const producto = productos.find(producto => producto.id == id);
-
-        carrito.push(producto);
-
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-
-        mostrarCarrito();
-
-        console.log("Producto seleccionado:", id);
-        
-
+        `;
     });
 
-});
-});
+    const total = carrito.reduce(function (suma, producto) {
+        return suma + producto.precio;
+    }, 0);
+
+    listaCarrito.innerHTML += `
+        <hr>
+        <h5>Total: $${total}</h5>
+    `;
+}
