@@ -19,10 +19,10 @@
                     <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="productos.html"><i class="bi bi-box-seam"></i>  Productos</a>
+                    <a class="nav-link active" aria-current="page" href="usuarios.html"><i class="bi bi-person-bounding-box"></i>  Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="citas.html"><i class="bi bi-calendar"></i> Citas</a>
+                    <a class="nav-link active" aria-current="page" href="productos.html"><i class="bi bi-box-seam"></i>  Productos</a>
                 </li>
             </ul>
         </div>
@@ -30,16 +30,16 @@
     </nav>
 
     <main class="p-4 flex-grow-1">
-        <h1>Usuarios</h1>
+        <h1>Citas</h1>
         <article>
                 <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#ModalAgregar">
-                    Agregar Usuario
+                    Agregar Cita
                 </button>
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalEditar">
-                    Editar Usuario
+                    Editar Cita
                 </button>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminar">
-                    Eliminar Usuario
+                    Eliminar Cita
                 </button>
 
 
@@ -50,7 +50,7 @@
 
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="modalAgregarLabel">
-                                Agregar Usuario
+                                Agregar Cita
                             </h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
@@ -58,21 +58,25 @@
                         <div class="modal-body">
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="UserAgregar">
-                                <label for="productoAgregar">User</label>
+                                <input type="text" class="form-control" id="citaAgregar">
+                                <label for="productoAgregar">Tipo Mascota</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="EmailAgregar">
-                                <label for="descripcionAgregar">Correo</label>
+                                <input type="text" class="form-control" id="citaAgregar">
+                                <label for="descripcionAgregar">Descripcion</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="citaAgregar">
+                                <label for="citaAgregar">Fecha</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="PasswAgregar">
-                                <label for="precioAgregar">Password</label>
+                                <input type="number" class="form-control" id="citaAgregar">
+                                <label for="precioAgregar">Precio $</label>
                             </div>
-
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 Cerrar
@@ -94,29 +98,41 @@
 
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="modalEditarLabel">
-                                Editar Usuario
+                                Editar Cita
                             </h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
+                             <div class="modal-body">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="UserEditar">
-                                <label for="productoAgregar">User</label>
+                                <input type="text" class="form-control" id="citaAgregar">
+                                <label for="citaAgregar">ID</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="EmailEditar">
-                                <label for="descripcionAgregar">Correo</label>
+                                <input type="text" class="form-control" id="citaAgregar">
+                                <label for="citaAgregar">Tipo Mascota</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="PasswEditar">
-                                <label for="precioAgregar">Password</label>
+                                <input type="text" class="form-control" id="citaAgregar">
+                                <label for="citaAgregar">Descripcion</label>
                             </div>
+                             <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="citaAgregar">
+                                <label for="citaAgregar">Fecha</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="citaAgregar">
+                                <label for="citaAgregar">Precio $</label>
+                            </div>
+                        </div>
 
                         </div>
-                       <div class="modal-footer">
+
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
@@ -124,10 +140,6 @@
                                 Guardar cambios
                             </button>
                         </div>
-
-                        </div>
-
-                       
 
                     </div>
                 </div>
@@ -140,18 +152,16 @@
 
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="modalEliminarLabel">
-                                Eliminar Usuario
+                                Eliminar Cita
                             </h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
-                
-                        
-                            ¿Está seguro de que desea eliminar este Usuario?
+                            ¿Está seguro de que desea eliminar esta cita?
                              <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="usuarioEliminar">
-                                <label for="usuarioEliminar">ID</label>
+                                <input type="number" class="form-control" id="citaEliminar">
+                                <label for="citaEliminar">ID</label>
                             </div>
                         </div>
 
@@ -173,17 +183,27 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">User</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Password</th>
+                    <th scope="col">Tipo Mascota</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Precio</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Admin1</td>
-                    <td>admin@duoc.cl</td>
-                    <td>*******</td>
+                    <td>Perro</td>
+                    <td>Chequeo</td>
+                    <td>10/09/2026</td>
+                    <td>9900</td>
+                </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Gato</td>
+                    <td>Chequeo</td>
+                    <td>12/09/2026</td>
+                    <td>6990</td>
+
                 </tr>
             </tbody>
         </table>
